@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: ShellCheck (if available)
+        run: |
+          if command -v shellcheck >/dev/null 2>&1; then
+            echo "Running shellcheck..."
+            shellcheck peststack.sh lib/*.sh tests/run.sh
+          else
+            echo "shellcheck not found; attempting apt install"
+            if sudo apt-get update && sudo apt-get install -y shellcheck; then
+              shellcheck peststack.sh lib/*.sh tests/run.sh
+            else
+              echo "shellcheck unavailable; skipping lint"
+            fi
+          fi
+
+      - name: Run test suite
+        run: bash tests/run.sh

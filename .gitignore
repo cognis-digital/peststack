@@ -1,0 +1,21 @@
+# peststack — ignore generated artifacts and local scratch
+
+# Generated installer scripts / images
+/setup.sh
+setup.sh
+Dockerfile
+*.generated.sh
+
+# Cloned toolkit sources (when PESTSTACK_SRC points into the tree)
+/src/
+/opt/
+
+# Editor / OS noise
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Test scratch
+/tmp/
+*.tmp
