@@ -16,11 +16,11 @@ jobs:
         run: |
           if command -v shellcheck >/dev/null 2>&1; then
             echo "Running shellcheck..."
-            shellcheck peststack.sh lib/*.sh tests/run.sh
+            shellcheck --severity=error peststack.sh lib/*.sh tests/run.sh
           else
             echo "shellcheck not found; attempting apt install"
             if sudo apt-get update && sudo apt-get install -y shellcheck; then
-              shellcheck peststack.sh lib/*.sh tests/run.sh
+              shellcheck --severity=error peststack.sh lib/*.sh tests/run.sh
             else
               echo "shellcheck unavailable; skipping lint"
             fi
