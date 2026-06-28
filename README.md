@@ -15,6 +15,41 @@ installer artifacts you review and run on a provisioning host you control.
 
 ---
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+  "scan_results": [
+    {
+      "host": "192.168.1.100",
+      "ports": [22, 80],
+      "services": [
+        {"port": 22, "name": "ssh", "version": "2.0"},
+        {"port": 80, "name": "http", "version": "1.1"}
+      ]
+    },
+    {
+      "host": "192.168.1.101",
+      "ports": [443],
+      "services": [
+        {"port": 443, "name": "https", "version": "1.3"}
+      ]
+    }
+  ],
+  "summary": {
+    "total_hosts": 2,
+    "total_ports": 3,
+    "total_services": 3
+  }
+}
+```
+
+<!-- cognis:example:end -->
+
 ## ⚠ Authorized use only
 
 peststack is intended **solely** for provisioning tooling used in security
